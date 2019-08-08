@@ -1,0 +1,46 @@
+<odoo>
+  <data>
+
+
+    <record id="action_inventory_pos" model="ir.actions.act_window">
+      <field name='name'>Inventario</field>
+      <field name='res_model'>stock.inventory</field>
+      <field name='view_mode'>tree,form</field>
+    </record>
+
+    <menuitem 
+        id="inventory_pos" name="Ajustes" 
+        parent="point_of_sale.menu_point_root" sequence="30"/>
+
+    <menuitem 
+        id="inventory_pos_view" name="Inventario" 
+        parent="inventory_pos" sequence="10" action="action_inventory_pos"/>
+
+    <record id="sale_order_confirmbtn" model="ir.ui.view">
+      <field name="name">rename.fields.data</field>
+      <field name="model">stock.inventory</field>
+      <field name="inherit_id" ref="stock.view_inventory_form" />
+      <field name="arch" type="xml">
+        <xpath expr="//header/button[@name='action_validate']" position="before">
+          <button name="valid_diference" string="Comprobar diferencia" type="object" class="oe_highlight"/>
+        </xpath>
+        <xpath expr="//field[@name='location_id']" position="after">
+          <field name="valid_dif" string="Valida diferencia" readonly="0" invisible="0" />
+        </xpath>
+        <xpath expr="//field[@name='theoretical_qty']" position="attributes">
+          <attribute name="string">Inicial</attribute>
+          <attribute name="attrs">{'column_invisible': [('parent.valid_dif', '=', False)]}</attribute>
+        </xpath>
+        <xpath expr="//field[@name='product_qty']" position="attributes">
+          <attribute name="string">Final</attribute>
+        </xpath>
+      
+        <xpath expr="//field[@name='product_qty']" position="after">
+          <field attrs="{'column_invisible': [('parent.valid_dif', '=', False)]}" name="diference_stock" string="Diferencia" />
+        </xpath>
+
+      </field>
+    </record>
+
+  </data>
+</odoo>
