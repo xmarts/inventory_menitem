@@ -31,8 +31,11 @@ class addValidDif(models.Model):
 				for line in record:
 					oper = line.product_qty - line.theoretical_qty
 					line.diference_stock = oper
-		ped_vent = self.env['pos.order']
-		ped_values = {
-			'name' : self.name,
-		}
-		ped_id = ped_vent.create(ped_values)
+
+
+
+
+
+
+
+		
