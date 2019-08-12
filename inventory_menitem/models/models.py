@@ -6,7 +6,7 @@ class addFieldDiference(models.Model):
 
 	_inherit = 'stock.inventory.line'
 
-	diference_stock = fields.Float( string = 'Diferencia', compute='_cal_diference', store=True )
+	diference_stock = fields.Float( string = 'Diferencia', store=True )
 
 	'''@api.one
 	@api.depends('product_qty','theoretical_qty')
