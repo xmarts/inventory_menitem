@@ -25,8 +25,9 @@
           <button name="valid_diference" string="Comprobar diferencia" type="object" class="oe_highlight"/>
         </xpath>
         <xpath expr="//field[@name='location_id']" position="after">
-          <field name="valid_dif" string="Valida diferencia" readonly="0" invisible="0" />
-          <field name="field_ses" string="Session" required="1"/>
+          <field name="valid_dif" string="Valida diferencia" readonly="0" invisible="1" />
+          <field name="field_ses" string="Session_val" invisible="1"/>
+          <field name="field_con" string="Session" required="1" />
         </xpath>
         <xpath expr="//field[@name='theoretical_qty']" position="attributes">
           <attribute name="string">Inicial</attribute>

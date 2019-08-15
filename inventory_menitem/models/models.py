@@ -23,7 +23,14 @@ class addValidDif(models.Model):
 	_inherit = 'stock.inventory'
 
 	valid_dif = fields.Boolean( default = False, string = 'Valid' )
-	field_ses = fields.Many2one('pos.session', string = 'Session', required = True)
+	field_ses = fields.Many2one('pos.session', string = 'Session')
+	field_con = fields.Many2one('pos.config', string = 'Config', required = True)
+
+	@api.onchange('field_con')
+	def _val_sesion(self):
+		if self.field_con:
+			busq = self.env['pos.session'].search([('config_id','=', self.field_con.id)], limit = 1)
+			self.field_ses = busq.id
 
 	@api.one
 	def valid_diference(self):
